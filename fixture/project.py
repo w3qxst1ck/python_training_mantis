@@ -21,11 +21,18 @@ class ProjectHeplper:
         wd.find_element_by_css_selector("input[value='%s']" % "Add Project").click()
         self.open_home_page()
 
+    def delete_project(self, name_of_project):
+        wd = self.app.wd
+        self.open_project_page()
+        wd.find_element_by_link_text("%s" % name_of_project).click()
+        wd.find_element_by_css_selector("input[value='%s']" % "Delete Project").click()
+        wd.find_element_by_css_selector("input[value='%s']" % "Delete Project").click()
+
     def get_project_list(self):
         wd = self.app.wd
         project_list = []
         rows = wd.find_elements_by_tag_name("tr")
-        for row in rows[2:len(rows)]:
+        for row in rows[2:]:
             cells = row.find_elements_by_tag_name("td")
             project = cells[0].text
             project_list.append(project)
