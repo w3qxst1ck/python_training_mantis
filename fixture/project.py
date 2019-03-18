@@ -31,7 +31,8 @@ class ProjectHeplper:
     def get_project_list(self):
         wd = self.app.wd
         project_list = []
-        rows = wd.find_elements_by_tag_name("tr")
+        table = wd.find_elements_by_tag_name("table")[2]
+        rows = table.find_elements_by_tag_name("tr")
         for row in rows[2:]:
             cells = row.find_elements_by_tag_name("td")
             project = cells[0].text
